@@ -25,13 +25,31 @@ It wrote the code, ran away, and now the game is unplayable.
 
 ## 📝 Document Your Experience
 
-- [ ] Describe the game's purpose.
-- [ ] Detail which bugs you found.
-- [ ] Explain what fixes you applied.
+- [x] **Game's purpose:** A Streamlit-based number guessing game where the player tries to guess a secret number within a limited number of attempts, receiving directional hints after each guess and earning a score based on how quickly they find the answer.
+
+- [x] **Bugs found:**
+  1. Hints were swapped — "Too High" said "Go HIGHER!" and "Too Low" said "Go LOWER!" (backwards).
+  2. On even-numbered attempts, the secret was converted to a string, causing string comparison instead of numeric — giving inconsistent/wrong hints.
+  3. Scoring was unfair — "Too High" guesses gave +5 on even attempts (rewarding wrong guesses), and the win bonus had an off-by-one error (`attempt_number + 1`).
+  4. Attempts initialized at 1 instead of 0, costing the player one guess.
+  5. Info message was hardcoded to "1 and 100" regardless of difficulty.
+  6. Hard difficulty range (1-50) was easier than Normal (1-100).
+  7. No validation for out-of-range guesses.
+
+- [x] **Fixes applied:**
+  1. Swapped the hint messages so "Too High" says "Go LOWER!" and "Too Low" says "Go HIGHER!".
+  2. Removed the even/odd string conversion — secret always stays as an integer.
+  3. Made "Too High" always deduct 5 points and removed the off-by-one in win scoring.
+  4. Changed initial attempts to 0.
+  5. Updated info message to use the actual difficulty range (`{low}` to `{high}`).
+  6. Changed Hard range to 1-200.
+  7. Added range validation — guesses outside the range show an error message.
+  8. Refactored all game logic from `app.py` into `logic_utils.py`.
 
 ## 📸 Demo
 
-- [ ] [Insert a screenshot of your fixed, winning game here]
+<!-- TODO: Replace this with a screenshot of your fixed, winning game -->
+![Game Screenshot](screenshot.png)
 
 ## 🚀 Stretch Features
 
